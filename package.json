@@ -1,0 +1,23 @@
+{
+  "name": "youtube-node-walkthrough-example",
+  "version": "1.0.0",
+  "description": "youtube-node-walkthrough-example",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kfujikawa/youtube-node-walkthrough-example.git"
+  },
+  "author": "Kinuyo Fujikawa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kfujikawa/youtube-node-walkthrough-example/issues"
+  },
+  "homepage": "https://github.com/kfujikawa/youtube-node-walkthrough-example#readme",
+  "dependencies": {
+    "express": "^4.15.2"
+  }
+}
