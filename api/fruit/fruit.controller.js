@@ -1,4 +1,4 @@
-let fruits = [];
+const Fruit = require('./fruit.model');
 
 function Controller () {};
 
@@ -12,41 +12,33 @@ function findById (id) {
 
 Controller.prototype = {
 	get (req, res, next) {
-		res
-			.status(200)
-			.json(fruits);
+		Fruit.find({}).then((fruits) => {
+			res.status(200).json(fruits);
+		}).catch((error) => next(error));
 	},
 
 	create (req, res, next) {
-		let fruit = req.body;
-		fruit.id = Math.floor(Math.random() * 50000);
-		fruits.push(fruit);
-		res
-			.status(201)
-			.json(fruits);
+		Fruit.create(req.body).then((fruit) => {
+			res.status(201).json(fruit);
+		}).catch((error) => next(error));
 	},
 
 	update (req, res, next) {
-		const index = findById(req.body.id);
-		fruits[index].name = req.body.name;
-		res
-			.status(201)
-			.json(fruits);
+		Fruit.findByIdAndUpdate(req.body.id, req.body).then((fruit) => {
+			res.status(201).json(fruit);
+		}).catch((error) => next(error));
 	},
 
 	remove (req, res, next) {
-		const index = findById(req.body.id);
-		fruits.splice(index, 1);
-		res
-			.status(200)
-			.json(fruits);
+		Fruit.findByIdAndRemove(req.body.id).then((fruit) => {
+			res.sendStatus(204);
+		}).catch((error) => next(error));
 	},
 
 	findOne (req, res, next){
-		const index = findById(parseInt(req.params.id));
-		res
-			.status(201)
-			.json(fruits[index]);
+		Fruit.findOne(req.body.id).then((fruit)=> {
+			res.status(200).json(fruit);
+		}).catch((error) => next(error));
 	}
 }
 
